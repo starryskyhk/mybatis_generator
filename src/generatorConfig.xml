@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+<!--    配置数据库连接的包-->
+<!--    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+
+
+<!--    targetRuntime运行环境-->
+    <context id="MyGenerator" targetRuntime="MyBatis3">
+
+
+<!--        去掉注释-->
+        <commentGenerator>
+            <property name="suppressAllComments"  value="true"/>
+            <property name="suppressDate"  value="true"/>
+        </commentGenerator>
+
+
+<!--        数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm_mybatis"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+
+<!--    java jdbc数据类型转换 将数据库中的属性转换为java属性-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+
+<!--        javaBean配置-->
+<!--        targetPackage输入包名  输出路径-->
+<!--        targetProject项目位置-->
+        <javaModelGenerator targetPackage="bean" targetProject="src">
+<!--            enableSubPackages 是否开启子包名称，是否在包名后面加上scheme名称-->
+            <property name="enableSubPackages" value="false" />
+<!--            在set方法中加入.trim-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+
+<!--        mapper.xml配置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src">
+<!--            enableSubPackages 是否开启子包名称，是否在包名后面加上scheme名称-->
+            <property name="enableSubPackages" value="flase" />
+        </sqlMapGenerator>
+
+
+<!--        java接口的配置-->
+        <javaClientGenerator type="mapper" targetPackage="mapper"  targetProject="src">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+<!--        数据库中的表，要根据数据库中的表生成-->
+        <table tableName="user"/>
+        <table tableName="country"/>
+    </context>
+</generatorConfiguration>
